@@ -39,6 +39,12 @@ export const signin = async (req, res, next) => {
 
 export const google = async (req, res, next) => {
   try {
+    const { email, name, photo } = req.body;
+
+    if (typeof name !== 'string') {
+      // Handle the case where 'name' is not a string
+      return res.status(400).json({ error: 'Invalid name provided' });
+    }
     const user = await User.findOne({ email });
 
     if (user) {
@@ -79,6 +85,12 @@ export const google = async (req, res, next) => {
 
 export const facebook = async (req, res, next) => {
   try {
+    const { email, name, photo } = req.body;
+
+    if (typeof name !== 'string') {
+      // Handle the case where 'name' is not a string
+      return res.status(400).json({ error: 'Invalid name provided' });
+    }
     const user = await User.findOne({ email });
 
     if (user) {
